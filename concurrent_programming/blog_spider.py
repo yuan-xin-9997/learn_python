@@ -2,8 +2,8 @@ import requests
 
 
 urls = [
-        f"https://www.cnblogs.com/#P{page}"
-        for page in range(1, 50+1)
+        f"https://www.cnblogs.com/#p{page}"
+        for page in range(1, 51)
     ]
 
 def craw(url):
