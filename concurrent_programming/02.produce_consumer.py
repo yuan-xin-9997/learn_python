@@ -7,7 +7,7 @@ import threading
 """
 演示生产者-消费者模型，10个线程生产，2个线程消费，使用队列在生产者和消费者之间传递数据
 https://www.bilibili.com/video/BV1bK411A7tV/
-TODO: 无法让程序正常退出
+TODO: 无法让程序正常退出，能够退出的版本见 ..1.py
 """
 
 def do_craw(url_queue: queue.Queue, html_queue: queue.Queue):
@@ -27,12 +27,13 @@ def do_craw(url_queue: queue.Queue, html_queue: queue.Queue):
 
 def do_parse(html_queue: queue.Queue, fout):
     while True:
-        try:
-            html = html_queue.get()
-        except Empty:
-            break
-        if html_queue.qsize() == 0:
-            break
+        html = html_queue.get()
+        # try:
+        #     html = html_queue.get()
+        # except Empty:
+        #     break
+        # if html_queue.qsize() == 0:
+        #     break
         res = produce_consumer_blog_spider.parse(html)
         for r in res:
             fout.write(str(r) + "\n")
@@ -70,9 +71,9 @@ if __name__ == "__main__":
         t.start()
 
 
-    # TODO：添加之后还是无法退出
-    for t in c_l:
-        t.join(timeout=10)
-
-    for t in p_l:
-        t.join(timeout=10)
+    # # TODO：添加之后还是无法退出
+    # for t in c_l:
+    #     t.join(timeout=10)
+    #
+    # for t in p_l:
+    #     t.join(timeout=10)
