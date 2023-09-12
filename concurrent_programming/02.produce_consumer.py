@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     # TODO：添加之后还是无法退出
     for t in c_l:
-        t.join()
+        t.join(timeout=10)
 
     for t in p_l:
-        t.join()
+        t.join(timeout=10)
