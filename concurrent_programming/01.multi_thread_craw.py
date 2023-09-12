@@ -1,6 +1,10 @@
 import blog_spider
 import time
 import threading
+"""
+多线程 vs 单线程 性能对比 在网络IO方面
+"""
+
 
 
 def single_thread():
