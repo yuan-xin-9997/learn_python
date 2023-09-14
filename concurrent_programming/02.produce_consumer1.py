@@ -6,6 +6,7 @@
 # create_date： 2023/9/12
 # Change Activity:
 """
+Python多线程在IO密集型应用
 演示生产者-消费者模型，10个线程生产，2个线程消费，使用队列在生产者和消费者之间传递数据
 https://www.bilibili.com/video/BV1bK411A7tV/
 通过异常处理和队列get超时机制让多线程程序正常退出

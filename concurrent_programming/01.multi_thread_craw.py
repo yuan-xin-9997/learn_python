@@ -2,7 +2,8 @@ import blog_spider
 import time
 import threading
 """
-多线程 vs 单线程 性能对比 在网络IO方面
+多线程 vs 单线程 性能对比 在网络IO应用（IO密集型程序）
+可以看到Python多线程，相比于单线程，能够显著提高性能
 """
 
 

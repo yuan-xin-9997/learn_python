@@ -1,9 +1,12 @@
-import threading
+"""
+演示多线程同步，同一个线程重复获取互斥锁会导致死锁的情况
+用以对比 可重入的互斥锁(同一个进程可以多次获得它，同时不会造成阻塞），同一个线程获取RLOCK不会出现死锁的情况
+"""
 import time
+import threading
 
 
-# Rlock = threading.RLock()
-Rlock = threading.Lock()
+lock = threading.Lock()
 
 
 class MyThread(threading.Thread):
@@ -15,25 +18,25 @@ class MyThread(threading.Thread):
         self.fun_B()
 
     def fun_A(self):
-        Rlock.acquire()
+        lock.acquire()
         print('A加锁1', end='\t')
-        Rlock.acquire()
+        lock.acquire()
         print('A加锁2', end='\t')
         time.sleep(0.2)
-        Rlock.release()
+        lock.release()
         print('A释放1', end='\t')
-        Rlock.release()
+        lock.release()
         print('A释放2')
 
     def fun_B(self):
-        Rlock.acquire()
+        lock.acquire()
         print('B加锁1', end='\t')
-        Rlock.acquire()
+        lock.acquire()
         print('B加锁2', end='\t')
         time.sleep(3)
-        Rlock.release()
+        lock.release()
         print('B释放1', end='\t')
-        Rlock.release()
+        lock.release()
         print('B释放2')
 
 

@@ -5,6 +5,7 @@ import time
 import random
 import threading
 """
+Python多线程在IO密集型应用
 演示生产者-消费者模型，10个线程生产，2个线程消费，使用队列在生产者和消费者之间传递数据
 https://www.bilibili.com/video/BV1bK411A7tV/
 TODO: 无法让程序正常退出，能够退出的版本见 ..1.py
