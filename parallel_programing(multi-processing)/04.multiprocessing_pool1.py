@@ -26,7 +26,7 @@ if __name__ == "__main__":
     pool = Pool(8)
 
     pool.map(main, lists)
-
+    print("test")
     pool.close()
 
     pool.join()
