@@ -14,14 +14,14 @@ import time
 from multiprocessing import Process, Value, Array
 
 
-###### 下面这种方式无法实现进程间数据共享，显然会导致数据有问题
+###### 下面这种方式无法实现进程间数据共享（每个进程会拷贝一份放置到自己的内存全局区域），显然会导致数据有问题，余额都是200元
 class Balance:
     def __init__(self, value):
         self.value = value
 # balance = Balance(1000)
 
 
-###### 下面这种方式能够实现进程间数据共享，但是无法解决同步问题
+###### 下面这种方式能够实现进程间数据共享，但是无法解决同步问题，余额都是-600元，显然是不符合的
 balance = Value('d', 1000.0)
 arr = Array('i', range(10))
 
@@ -46,6 +46,8 @@ def draw(balance, amount):
 
 
 if __name__ == "__main__":
+    # balance = Value('d', 1000.0)
+
     print(f"current process id = {os.getpid()}")
     pa = Process(name="process_A", target=draw, args=(balance, 800))
     pb = Process(name="process_B", target=draw, args=(balance, 800))
