@@ -1,1 +1,1 @@
-from .CPU_Bound_test_case import *
+from .CPU_Bound_test_case1 import *
