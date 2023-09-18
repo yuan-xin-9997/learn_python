@@ -14,7 +14,7 @@ https://zhuanlan.zhihu.com/p/588189685
 """
 
 import os
-import numpy as np
+# import numpy as np
 import time
 from multiprocessing import Process
 from multiprocessing import Pool
@@ -54,7 +54,7 @@ def mp_pool():
         tasks = []
         for i in range(worker_num):
             tasks.append(
-                pool.apply_async(target=append_to_list, args=([], 10000000))
+                pool.apply_async(append_to_list, args=([], 10000000))
             )
         pool.close()
         pool.join()
@@ -65,22 +65,31 @@ def loop_pool():
     with ProcessPoolExecutor(max_workers=worker_num) as exe:
         for i in range(worker_num):
             exe.submit(
-                target=append_to_list, args=([], 10000000)
+                # target=append_to_list, args=([], 10000000)
+                append_to_list, [], 10000000
             )
 
 # 6.  direct
 @profile
 def direct():
-    append_to_list([], 10000000)
+    for i in range(worker_num):
+        append_to_list([], 10000000)
 
 
 if __name__ == '__main__':
     print("当前环境CPU核数: ", worker_num)
     with Benchmark("循环创建进程"):
+        print("循环创建进程")
         loop_mp()
+    print()
     with Benchmark("使用multiprocessing的Pool进程池"):
+        print("使用multiprocessing的Pool进程池")
         mp_pool()
+    print()
     with Benchmark("使用concurrent.futures的ProcessPoolExecutor进程池"):
+        print("使用concurrent.futures的ProcessPoolExecutor进程池")
         loop_pool()
+    print()
     with Benchmark("使用单进程"):
+        print("使用单进程")
         direct()

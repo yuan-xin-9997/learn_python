@@ -21,9 +21,9 @@ from multiprocessing import Pool
 from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from threading import Thread
 from memory_profiler import profile
+
+
 # Time calculator
-
-
 class Benchmark:
     def __init__(self, text):
         self.text = text

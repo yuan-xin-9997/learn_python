@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, as_compl
 from functools import wraps
 
 a = 11293754244211231
-numbers = [a + i for i in range(1, 101)]
+numbers = [a + i for i in range(1, 1001)]
 numbers.insert(0, 2)
 
 
