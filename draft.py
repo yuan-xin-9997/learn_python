@@ -1,3 +1,4 @@
+print(__name__)
 loan_total_amount = 121.082016  # 贷款金额，单位: W
 loan_year_rate = 3.85  # 贷款年利率，单位%
 loan_term = 360  # 还款月数
