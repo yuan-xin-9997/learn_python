@@ -57,4 +57,21 @@ print(a is b)
 # 你现在一定想到了 sys.modules 是一个 dict 对象，可以通过 type(sys.modules) 来验证
 print(type(sys.modules))
 print(sys.modules)
+for k,v in sys.modules.items():
+    print(k, v)
+
+# 3.5 多线程
+# demo.py 这个例子并没有用到多线程，但还是有必要提一下。
+#
+# 在提到多线程的时候，往往要关注线程如何同步，如何访问共享资源。Python 是通过一个全局解释器锁 GIL（Global Interpreter Lock）来实现线程同步
+# 的。当 Python 程序只有单线程时，并不会启用 GIL，而当用户创建了一个 thread 时，表示要使用多线程，Python 解释器就会自动激活 GIL，并创建所
+# 需要的上下文环境和数据结构。
+#
+# Python 字节码解释器的工作原理是按照指令的顺序一条一条地顺序执行，Python 内部维护着一个数值，这个数值就是 Python 内部的时钟，如果这个数值
+# 为 N，则意味着 Python 在执行了 N 条指令以后应该立即启动线程调度机制，可以通过下面的代码获取这个数值。
+
+print(sys.getcheckinterval()) # 100
+print(sys.getswitchinterval()) # 0.005
+# 线程调度机制将会为线程分配 GIL，获取到 GIL 的线程就能开始执行，而其他线程则必须等待。由于 GIL 的存在，Python 的多线程性能十分低下，无
+# 法发挥多核 CPU 的优势，性能甚至不如单线程。因此如果你想用到多核 CPU，一个建议是使用多进程。
 
